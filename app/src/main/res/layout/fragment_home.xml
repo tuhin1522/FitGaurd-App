@@ -3,14 +3,135 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/backgroundblue"
     tools:context=".Home">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/textViewStepCounter"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="fragment Home"
-        android:textSize="30dp"/>
+        android:layout_height="98dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:text="Step Goal: 8000"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewStepDetector"
+        android:layout_width="match_parent"
+        android:layout_height="168dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/cus_rectangle"
+        android:gravity="center"
+        android:text="Step Count: 0"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold"
+
+        />
+
+    <Button
+        android:id="@+id/btnReset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginRight="10dp"
+        android:onClick="onStartButtonClick"
+        android:text="Reset"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:background="@drawable/button_rectangle"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/btnIsPause"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="180dp"
+        android:layout_marginRight="10dp"
+        android:textColor="#C3C7CC"
+        android:textStyle="bold"
+        android:onClick="onStartButtonClick"
+        android:text="Pause"
+        android:textSize="25dp"
+        android:background="@drawable/button_rectangle"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginRight="20dp">
+
+        <ImageView
+
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/distance" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="3dp"
+            android:text="Distance : "
+            android:textStyle="bold"
+            android:textColor="@color/textColor"
+            android:textSize="18dp" />
+        <TextView
+            android:id="@+id/textViewDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="100dp"
+            android:text="2 kms distance covered"
+            android:textColor="@color/textColor"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_marginTop="310dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/calorie"/>
+
+        <TextView
+            android:layout_width="139dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="65dp"
+            android:layout_marginTop="3dp"
+            android:text="Calorie: "
+            android:textStyle="bold"
+            android:textColor="@color/textColor"
+            android:textSize="18dp" />
+        <TextView
+            android:id="@+id/textViewCalorie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="100dp"
+            android:text="2 calorie burned"
+            android:textColor="@color/textColor"/>
+    </RelativeLayout>
+
 
 
 </FrameLayout>

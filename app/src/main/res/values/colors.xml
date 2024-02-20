@@ -4,4 +4,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="backgroundblue">#343057</color>
     <color name="textColor">#C3C7CC</color>
+    <color name="cardwhite">#C8CDDA</color>
+    <color name="lavender">#8692f7</color>
 </resources>

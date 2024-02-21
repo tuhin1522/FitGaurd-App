@@ -6,100 +6,62 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import androidx.annotation.Nullable;
-
-
 public class DatabaseManager extends SQLiteOpenHelper {
-    private static String dbname = "reminder";                                                      //Table  name to store reminders in sqllite
+    private static final String DB_NAME = "reminder";
+    private static final String TABLE_NAME = "tbl_reminder";
+    private static final String COLUMN_ID = "id";
+    private static final String COLUMN_TITLE = "title";
+    private static final String COLUMN_DATE = "date";
+    private static final String COLUMN_TIME = "time";
 
-    public DatabaseManager(@Nullable Context context) {
-        super(context, dbname, null, 1);
+    public DatabaseManager(Context context) {
+        super(context, DB_NAME, null, 1);
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {                                           //sql query to insert data in sqllite
-        String query = "create table tbl_reminder(id integer primary key autoincrement,title text,date text,time text)";
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        String query = "CREATE TABLE " + TABLE_NAME + "(" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COLUMN_TITLE + " TEXT," +
+                COLUMN_DATE + " TEXT," +
+                COLUMN_TIME + " TEXT)";
         sqLiteDatabase.execSQL(query);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
-        String query = "DROP TABLE IF EXISTS tbl_reminder";                                         //sql query to check table with the same name or not
-        sqLiteDatabase.execSQL(query);                                                              //executes the sql command
+        String query = "DROP TABLE IF EXISTS " + TABLE_NAME;
+        sqLiteDatabase.execSQL(query);
         onCreate(sqLiteDatabase);
-
     }
 
-    public String addreminder(String title, String date, String time) {
-        SQLiteDatabase database = this.getReadableDatabase();
+    public String addReminder(String title, String date, String time) {
+        SQLiteDatabase database = this.getWritableDatabase();
 
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("title", title);                                                          //Inserts  data into sqllite database
-        contentValues.put("date", date);
-        contentValues.put("time", time);
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TITLE, title);
+        values.put(COLUMN_DATE, date);
+        values.put(COLUMN_TIME, time);
 
-        float result = database.insert("tbl_reminder", null, contentValues);    //returns -1 if data successfully inserts into database
+        long result = database.insert(TABLE_NAME, null, values);
 
         if (result == -1) {
             return "Failed";
         } else {
             return "Successfully inserted";
         }
-
     }
 
     public Cursor readallreminders() {
-        SQLiteDatabase database = this.getWritableDatabase();
-        String query = "select * from tbl_reminder order by id asc";                               //Sql query to  retrieve  data from the database
-        Cursor cursor = database.rawQuery(query, null);
-        return cursor;
+        SQLiteDatabase database = this.getReadableDatabase();
+        String query = "SELECT * FROM tbl_reminder ORDER BY id ASC";
+        return database.rawQuery(query, null);
     }
 
+
+    public void deleteReminder(int id) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        database.delete(TABLE_NAME, COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
+        database.close();
+    }
 }
-//public class DatabaseManager extends SQLiteOpenHelper {
-//    private static String dbname = "reminder";
-//
-//    public DatabaseManager(@Nullable Context context) {
-//        super(context, dbname, null, 1);
-//    }
-//
-//    @Override
-//    public void onCreate(SQLiteDatabase db) {
-//        String query = "create table tbl_reminder(id integer primary key autoincrement,title text,date text,time text)";
-//        db.execSQL(query);
-//    }
-//
-//    @Override
-//    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-//        String query = "DROP TABLE IF EXISTS tbl_reminder";                                         //sql query to check table with the same name or not
-//        db.execSQL(query);                                                              //executes the sql command
-//        onCreate(db);
-//    }
-//
-//
-//    public String addreminder(String title, String date, String time) {
-//        SQLiteDatabase database = this.getReadableDatabase();
-//
-//        ContentValues contentValues = new ContentValues();
-//        contentValues.put("title", title);                                                          //Inserts  data into sqllite database
-//        contentValues.put("date", date);
-//        contentValues.put("time", time);
-//
-//        float result = database.insert("tbl_reminder", null, contentValues);    //returns -1 if data successfully inserts into database
-//
-//        if (result == -1) {
-//            return "Failed";
-//        } else {
-//            return "Successfully inserted";
-//        }
-//
-//    }
-//
-//    public Cursor readallreminders() {
-//        SQLiteDatabase database = this.getWritableDatabase();
-//        String query = "select * from tbl_reminder order by id desc";                               //Sql query to  retrieve  data from the database
-//        Cursor cursor = database.rawQuery(query, null);
-//        return cursor;
-//    }
-//}

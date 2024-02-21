@@ -46,7 +46,7 @@ public class Alarm extends Fragment {
 
         Cursor cursor = new DatabaseManager(getContext()).readallreminders();                  //Cursor To Load data From the database
         while (cursor.moveToNext()) {
-            NotificationModel model = new NotificationModel(cursor.getString(1), cursor.getString(2), cursor.getString(3));
+            NotificationModel model = new NotificationModel(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
             arrNotification.add(model);
         }
 

@@ -6,7 +6,7 @@
         android:icon="@drawable/ic_home"/>
     <item
         android:id="@+id/bottom_alarm"
-        android:title="Notifications"
+        android:title="Reminder"
         android:icon="@drawable/ic_alarm"/>
     <item
         android:id="@+id/bottom_profile"

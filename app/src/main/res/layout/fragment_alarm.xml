@@ -15,7 +15,7 @@
             android:id="@+id/fragment_listalarms_myAlarms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/notifications"
+            android:text="@string/reminder"
             android:textAlignment="center"
             android:textColor="@color/textColor"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
@@ -34,15 +34,15 @@
             android:id="@+id/addNotification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="16dp"
+            android:layout_margin="16dp"
+            android:layout_gravity="bottom|end"
             app:borderWidth="0dp"
             android:backgroundTint="#14ED40"
             android:src="@drawable/ic_alarm_white_24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:contentDescription="@string/add_notification_button_description" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

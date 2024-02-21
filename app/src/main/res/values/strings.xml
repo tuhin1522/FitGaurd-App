@@ -5,5 +5,7 @@
     <string name="enter_your_title">Enter your Title</string>
     <string name="set_notificaion">Set Notification</string>
     <string name="set_notification_time">Set Notifications Time</string>
-    <string name="notifications">Notifications</string>
+    <string name="reminder">Reminders</string>
+    <string name="add_notification_button_description">Add Notification</string>
+
 </resources>

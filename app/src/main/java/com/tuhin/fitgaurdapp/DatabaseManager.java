@@ -64,4 +64,19 @@ public class DatabaseManager extends SQLiteOpenHelper {
         database.delete(TABLE_NAME, COLUMN_ID + " = ?", new String[]{String.valueOf(id)});
         database.close();
     }
+
+    public void updateReminder(NotificationModel updatedNotification) {
+        SQLiteDatabase database = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_TITLE, updatedNotification.getTitle());
+        values.put(COLUMN_DATE, updatedNotification.getDate());
+        values.put(COLUMN_TIME, updatedNotification.getTime());
+
+        database.update(TABLE_NAME, values, COLUMN_ID + " = ?",
+                new String[]{String.valueOf(updatedNotification.getId())});
+
+        database.close();
+    }
+
 }

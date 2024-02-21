@@ -14,7 +14,8 @@ public class Notification_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
         textView = findViewById(R.id.tv_message);
-        Bundle bundle = getIntent().getExtras();                                                    //call the data which is passed by another intent
+        //call the data which is passed by another intent
+        Bundle bundle = getIntent().getExtras();
         textView.setText(bundle.getString("message"));
     }
 }

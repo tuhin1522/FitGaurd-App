@@ -40,52 +40,18 @@ public class Alarm extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), RemainderActivity.class);
-                startActivity(intent);                                                              //Starts the new activity to add Reminders
+                startActivity(intent);
             }
         });
-
-        Cursor cursor = new DatabaseManager(getContext()).readallreminders();                  //Cursor To Load data From the database
+        //Cursor To Load data From the database
+        Cursor cursor = new DatabaseManager(getContext()).readallreminders();
         while (cursor.moveToNext()) {
             NotificationModel model = new NotificationModel(cursor.getInt(0), cursor.getString(1), cursor.getString(2), cursor.getString(3));
             arrNotification.add(model);
         }
 
         alarmRecyclerViewAdapter = new AlarmRecyclerViewAdapter(getContext(), arrNotification);
-        recyclerView.setAdapter(alarmRecyclerViewAdapter);                                                          //Binds the adapter with recyclerview
-
-
-//        @Override
-//        public void onBackPressed () {
-//            finish();                                                                                   //Makes the user to exit form the app
-//            super.onBackPressed();
-//
-//        }
-
-
-//        addAlarm.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getContext(), RemainderActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        Cursor cursor = new DatabaseManager(getContext()).readallreminders();
-//        while (cursor.moveToNext()){
-//            NotificationModel notificationModel = new NotificationModel(cursor.getString(1), cursor.getString(2), cursor.getString(3));
-//            arrNotification.add(notificationModel);
-//        }
-//
-//        alarmRecyclerViewAdapter = new AlarmRecyclerViewAdapter(arrNotification);
-//        recyclerView.setAdapter(alarmRecyclerViewAdapter);
-
-//
-//        @Override
-//        public void onBackPressed() {
-//            finish();                                                                                   //Makes the user to exit form the app
-//            super.onBackPressed();
-//
-//        }
+        recyclerView.setAdapter(alarmRecyclerViewAdapter);
 
         return view;
     }

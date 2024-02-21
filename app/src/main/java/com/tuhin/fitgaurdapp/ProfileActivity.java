@@ -12,7 +12,7 @@ import android.widget.Toast;
 public class ProfileActivity extends AppCompatActivity {
 
     private Button loginbutton;
-    private EditText editTextGender,editTextDate, editTextHeight, editTextWeight;
+    private EditText editTextName, editTextGender,editTextDate, editTextHeight, editTextWeight;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +23,7 @@ public class ProfileActivity extends AppCompatActivity {
         editTextDate = findViewById(R.id.editTextDate);
         editTextHeight = findViewById(R.id.editTextHeight);
         editTextWeight = findViewById(R.id.editTextWeight);
+        editTextName = findViewById(R.id.editTextName);
 
         Intent log = new Intent(ProfileActivity.this, MainActivity.class);
 

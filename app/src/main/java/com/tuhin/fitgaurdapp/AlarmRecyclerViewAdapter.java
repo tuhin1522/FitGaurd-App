@@ -179,7 +179,6 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmRecycler
         });
 
         // Set OnClickListener for timeTextView to show TimePickerDialog
-        // Set OnClickListener for timeTextView to show TimePickerDialog
         timeTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

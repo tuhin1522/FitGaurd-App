@@ -95,7 +95,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginLeft="65dp"
             android:layout_marginRight="100dp"
-            android:text="2 kms distance covered"
+            android:text="0 km distance covered"
             android:textColor="@color/textColor"/>
     </RelativeLayout>
 
@@ -128,7 +128,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginLeft="65dp"
             android:layout_marginRight="100dp"
-            android:text="2 calorie burned"
+            android:text="0 calorie burned"
             android:textColor="@color/textColor"/>
     </RelativeLayout>
 

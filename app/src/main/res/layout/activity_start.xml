@@ -7,20 +7,12 @@
     android:orientation="vertical"
     android:gravity="bottom"
     android:padding="10dp"
-    android:background="@color/backgroundblue"
+    android:background="@drawable/welcome"
     tools:context=".StartActivity">
 
 
 
-    <Button
-        android:id="@+id/startbutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Start"
-        android:textSize="30sp"
-        android:layout_gravity="center"
 
-        />
 
 
 

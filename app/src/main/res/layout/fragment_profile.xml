@@ -1,115 +1,180 @@
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/profile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/backgroundblue"
-    android:id="@+id/profile"
     android:padding="16dp">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/NameLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name"
-            android:textSize="18sp"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="8dp"/>
-
-        <TextView
-            android:id="@+id/TextName"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="John Doe"
-            android:textSize="16sp"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="16dp"/>
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/DateOfBirthLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Date of Birth"
-            android:textSize="18sp"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="8dp"/>
+            <ImageView
+                android:layout_width="354dp"
+                android:layout_height="213dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="0dp"
+                android:src="@drawable/profile_photo" />
 
-        <TextView
-            android:id="@+id/DateOfBirthText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="January 1, 1990"
-            android:textSize="16sp"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="16dp"/>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:cardCornerRadius="20dp"
+                >
 
-        <TextView
-            android:id="@+id/GenderLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Gender"
-            android:textSize="18sp"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="8dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#C14E5B77"
+                    android:paddingLeft="20dp">
 
-        <TextView
-            android:id="@+id/GenderText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Male"
-            android:textSize="16sp"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="16dp"/>
+                    <TextView
+                        android:id="@+id/nameLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Name:"
+                        android:textSize="16sp"
+                        android:textColor="@color/textColor"
+                        android:layout_marginTop="15dp" />
 
-        <TextView
-            android:id="@+id/WeightLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Weight"
-            android:textSize="18sp"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="8dp"/>
+                    <TextView
+                        android:id="@+id/TextName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="John Doe"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/lavender"
+                        android:layout_marginBottom="16dp" />
 
-        <TextView
-            android:id="@+id/WeightText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="70 kg"
-            android:textSize="16sp"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="16dp"/>
+                    <TextView
+                        android:id="@+id/DateOfBirthLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Date of Birth:"
+                        android:textSize="16sp"
+                        android:textColor="@color/textColor"
+                        android:layout_marginBottom="8dp" />
 
-        <TextView
-            android:id="@+id/HeightLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Height"
-            android:textSize="18sp"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="8dp"/>
+                    <TextView
+                        android:id="@+id/DateOfBirthText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="23/01/1990"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_marginBottom="16dp" />
 
-        <TextView
-            android:id="@+id/HeightText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="180 cm"
-            android:textSize="16sp"
-            android:textColor="@android:color/white"
-            android:layout_marginBottom="16dp"/>
+                    <TextView
+                        android:id="@+id/GenderLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gender:"
+                        android:textSize="16sp"
+                        android:textColor="@color/textColor"
+                        android:layout_marginBottom="8dp" />
 
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Log Out"
-            android:textSize="16sp"
-            android:textColor="@android:color/white"
-            android:background="@color/black"/>
-    </LinearLayout>
+                    <TextView
+                        android:id="@+id/GenderText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Male"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:id="@+id/WeightLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Weight-kg:"
+                        android:textSize="16sp"
+                        android:textColor="@color/textColor"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/WeightText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="70 kg"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:id="@+id/HeightLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Height-feet:"
+                        android:textSize="16sp"
+                        android:textColor="@color/textColor"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:id="@+id/HeightText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="9.7 feet"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:layout_marginBottom="16dp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="20dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="155dp"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal"
+                    android:id="@+id/btnLogout"
+                    android:background="#797598"
+                    android:weightSum="3"
+                    >
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/baseline_arrow_circle"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Log Out"
+                        android:layout_marginStart="10dp"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="22dp"
+                        android:layout_marginLeft="10dp" />
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+
+
+
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>

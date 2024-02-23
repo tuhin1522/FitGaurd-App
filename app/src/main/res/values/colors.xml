@@ -2,8 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="backgroundblue">#2A2744</color>
+    <color name="backgroundblue">#201D38</color>
     <color name="textColor">#C3C7CC</color>
     <color name="cardwhite">#65A7A8DF</color>
-    <color name="lavender">#8692f7</color>
+    <color name="lavender">#3E2CEE</color>
+    <color name="textcolor">#6D60D3</color>
 </resources>

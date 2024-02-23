@@ -39,6 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="90dp"
                 android:layout_margin="10dp"
+                android:padding="10dp"
                 android:background="@drawable/edit_background"
                 android:hint="Enter The Task" />
 
@@ -55,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="0.5"
-                    android:text="date" />
+                    android:text="Date" />
 
                 <Button
                     android:id="@+id/btnTime"
@@ -63,17 +64,10 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="0.5"
-                    android:text="time" />
+                    android:text="Time" />
 
             </LinearLayout>
 
-
-<!--            <Button-->
-<!--                android:id="@+id/btnSbumit"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="10dp"-->
-<!--                android:text="Save" />-->
 
         </LinearLayout>
 

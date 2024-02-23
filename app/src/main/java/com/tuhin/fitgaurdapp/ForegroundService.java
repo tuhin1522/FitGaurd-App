@@ -75,7 +75,7 @@ public class ForegroundService extends Service implements SensorEventListener {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "YourChannelId")
                 .setContentTitle("Step Counter")
                 .setContentText("Counting steps in the foreground...")
-                .setSmallIcon(R.drawable.ic_notification_icon)
+                .setSmallIcon(R.drawable.notification_icon)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         return builder.build();

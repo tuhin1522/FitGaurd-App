@@ -2,10 +2,6 @@ package com.tuhin.fitgaurdapp;
 
 import static android.app.PendingIntent.FLAG_IMMUTABLE;
 
-import static androidx.core.content.ContentProviderCompat.requireContext;
-
-import static java.security.AccessController.getContext;
-
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -89,9 +85,9 @@ public class StepForegroundService extends Service implements SensorEventListene
                 0, notificationIntent, FLAG_IMMUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "ForegroundServiceChannel")
-                .setContentTitle("Step Count")
+                .setContentTitle(" FitGuard")
                 .setContentText("Step Count: " + stepCount)
-                .setSmallIcon(R.drawable.ic_notification_icon)
+                .setSmallIcon(R.drawable.notification_icon1)
                 .setContentIntent(pendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_LOW);
 

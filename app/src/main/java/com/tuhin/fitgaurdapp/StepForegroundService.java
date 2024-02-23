@@ -2,6 +2,10 @@ package com.tuhin.fitgaurdapp;
 
 import static android.app.PendingIntent.FLAG_IMMUTABLE;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
+import static java.security.AccessController.getContext;
+
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -9,6 +13,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -27,10 +32,12 @@ public class StepForegroundService extends Service implements SensorEventListene
     private SensorManager sensorManager;
     private Sensor mStepDetector;
     private int stepCount = 0;
-
+    private static final String PREFS_NAME = "MyPrefs";
     @Override
     public void onCreate() {
         super.onCreate();
+        SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        stepCount = prefs.getInt("stepDetect", 0);
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         if (sensorManager != null) {
             mStepDetector = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
@@ -93,8 +100,13 @@ public class StepForegroundService extends Service implements SensorEventListene
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        SharedPreferences prefs = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        stepCount = prefs.getInt("stepDetect", 0);
         if (event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR) {
             stepCount++;
+            SharedPreferences.Editor editor = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE).edit();
+            editor.putInt("stepDetect", stepCount);
+            editor.apply();
             updateNotification();
         }
     }

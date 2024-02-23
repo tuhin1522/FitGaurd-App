@@ -62,6 +62,9 @@ public class Home extends Fragment implements SensorEventListener {
         ContextCompat.startForegroundService(getActivity(), serviceIntent);
         foregroundServiceRunning();
 
+        SharedPreferences MyPrefs = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        stepDetect = MyPrefs.getInt("stepDetect", 0);
+
         textViewStepCounter = view.findViewById(R.id.textViewStepCounter);
         textViewStepDetector = view.findViewById(R.id.textViewStepDetector);
         textViewDistance = view.findViewById(R.id.textViewDistance);
@@ -141,14 +144,18 @@ public class Home extends Fragment implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
+
+        SharedPreferences MyPrefs = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        stepDetect = MyPrefs.getInt("stepDetect", 0);
+
         if (sensorEvent.sensor == mStepDetector && !isPause) {
             stepDetect = (int) (stepDetect + sensorEvent.values[0]);
             textViewStepDetector.setText("Step Detector: " + stepDetect);
 
             // Store the current step detector value
-            SharedPreferences.Editor editor = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit();
-            editor.putInt("stepDetect", stepDetect);
-            editor.apply();
+//            SharedPreferences.Editor editor = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit();
+//            editor.putInt("stepDetect", stepDetect);
+//            editor.apply();
         }
         float distanceInKm = stepDetect* stepLengthInMeter/1000;
         textViewDistance.setText(String.format(Locale.getDefault(), "%.2f km distance covered", distanceInKm));
@@ -176,6 +183,10 @@ public class Home extends Fragment implements SensorEventListener {
     @Override
     public void onResume() {
         super.onResume();
+        //updating from foreground service
+
+
+
         if (isCounterSensorPresent) {
             sensorManager.registerListener(this, mStepCounter, SensorManager.SENSOR_DELAY_NORMAL);
         }
@@ -183,6 +194,7 @@ public class Home extends Fragment implements SensorEventListener {
             sensorManager.registerListener(this, mStepDetector, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
+
 
     @Override
     public void onPause() {

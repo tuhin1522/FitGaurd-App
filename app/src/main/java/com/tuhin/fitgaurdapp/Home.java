@@ -1,7 +1,12 @@
 package com.tuhin.fitgaurdapp;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+import static androidx.core.content.ContextCompat.startForegroundService;
+
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -17,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import java.util.Locale;
@@ -49,6 +55,15 @@ public class Home extends Fragment implements SensorEventListener {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         Window window = requireActivity().getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+
+        //foreground Intent
+        Intent serviceIntent = new Intent(getActivity(), StepForegroundService.class);
+        ContextCompat.startForegroundService(getActivity(), serviceIntent);
+        foregroundServiceRunning();
+
+        SharedPreferences MyPrefs = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        stepDetect = MyPrefs.getInt("stepDetect", 0);
 
         textViewStepCounter = view.findViewById(R.id.textViewStepCounter);
         textViewStepDetector = view.findViewById(R.id.textViewStepDetector);
@@ -129,14 +144,18 @@ public class Home extends Fragment implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
+
+        SharedPreferences MyPrefs = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        stepDetect = MyPrefs.getInt("stepDetect", 0);
+
         if (sensorEvent.sensor == mStepDetector && !isPause) {
             stepDetect = (int) (stepDetect + sensorEvent.values[0]);
             textViewStepDetector.setText("Step Detector: " + stepDetect);
 
             // Store the current step detector value
-            SharedPreferences.Editor editor = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit();
-            editor.putInt("stepDetect", stepDetect);
-            editor.apply();
+//            SharedPreferences.Editor editor = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit();
+//            editor.putInt("stepDetect", stepDetect);
+//            editor.apply();
         }
         float distanceInKm = stepDetect* stepLengthInMeter/1000;
         textViewDistance.setText(String.format(Locale.getDefault(), "%.2f km distance covered", distanceInKm));
@@ -144,6 +163,16 @@ public class Home extends Fragment implements SensorEventListener {
         int calorie= (int) (stepDetect * perStepCalorie);
         textViewCalorie.setText(calorie +" calories burned");
 
+    }
+    public boolean foregroundServiceRunning() {
+        ActivityManager activityManager = (ActivityManager) requireContext().getSystemService(Context.ACTIVITY_SERVICE);
+
+        for (ActivityManager.RunningServiceInfo service : activityManager.getRunningServices(Integer.MAX_VALUE)) {
+            if (StepForegroundService.class.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -154,6 +183,10 @@ public class Home extends Fragment implements SensorEventListener {
     @Override
     public void onResume() {
         super.onResume();
+        //updating from foreground service
+
+
+
         if (isCounterSensorPresent) {
             sensorManager.registerListener(this, mStepCounter, SensorManager.SENSOR_DELAY_NORMAL);
         }
@@ -161,6 +194,7 @@ public class Home extends Fragment implements SensorEventListener {
             sensorManager.registerListener(this, mStepDetector, SensorManager.SENSOR_DELAY_NORMAL);
         }
     }
+
 
     @Override
     public void onPause() {

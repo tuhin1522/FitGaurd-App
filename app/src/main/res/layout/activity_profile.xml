@@ -91,9 +91,9 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/edittext_background"
             android:ems="10"
-            android:hint="Your weight-KG"
-            android:inputType="number"
-            android:padding="12dp"
+            android:hint="Your height"
+            android:inputType="number|numberDecimal"
+            android:padding="8dp"
             android:textColor="@color/white"
             android:textSize="12sp" />
 
@@ -104,9 +104,9 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/edittext_background"
             android:ems="10"
-            android:hint="Your Height"
-            android:inputType="numberDecimal"
-            android:padding="12dp"
+            android:hint="Your weight"
+            android:inputType="number|numberDecimal"
+            android:padding="8dp"
             android:textColor="@color/white"
             android:textSize="12sp" />
 

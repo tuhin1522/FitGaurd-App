@@ -21,6 +21,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -42,8 +43,8 @@ public class Home extends Fragment implements SensorEventListener {
     private int initialStepCount = 0;
     private int stepCount = 0;
     private int stepDetect = 0;
-    private float stepLengthInMeter= .5F;
-    private float perStepCalorie = .5F;
+    private float stepLengthInMeter= .72F;
+    private float perStepCalorie = .04F;
     private long timePause = 0;
     //private long startTime;
     private int stepCountTarget= 8000;
@@ -147,15 +148,14 @@ public class Home extends Fragment implements SensorEventListener {
 
         SharedPreferences MyPrefs = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
         stepDetect = MyPrefs.getInt("stepDetect", 0);
+        if(stepCountTarget == stepDetect){
+            Toast.makeText(getActivity(), "You achived your goal. Congratulations!", Toast.LENGTH_SHORT).show();
+        }
 
         if (sensorEvent.sensor == mStepDetector && !isPause) {
             stepDetect = (int) (stepDetect + sensorEvent.values[0]);
             textViewStepDetector.setText("Step Detector: " + stepDetect);
 
-            // Store the current step detector value
-//            SharedPreferences.Editor editor = requireContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit();
-//            editor.putInt("stepDetect", stepDetect);
-//            editor.apply();
         }
         float distanceInKm = stepDetect* stepLengthInMeter/1000;
         textViewDistance.setText(String.format(Locale.getDefault(), "%.2f km distance covered", distanceInKm));

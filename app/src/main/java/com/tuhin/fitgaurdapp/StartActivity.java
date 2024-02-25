@@ -33,15 +33,8 @@ public class StartActivity extends AppCompatActivity {
                 }
 
                 startActivity(iNext);
+                finish();
             }
         }, 1000);
-//        startbutton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent startintent = new Intent(StartActivity.this, GoalActivity.class);
-//                startActivity(startintent);
-//                finish();
-//            }
-//        });
     }
 }

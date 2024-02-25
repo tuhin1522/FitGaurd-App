@@ -45,7 +45,10 @@ public class Profile extends Fragment {
                 editor.clear(); // Clear all data
                 editor.apply();
 
-                getActivity().finishAffinity(); // Close the current activity after logout
+                Intent intent = new Intent(getActivity(), ProfileActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+                //getActivity().finishAffinity(); // Close the current activity after logout
             }
         });
 

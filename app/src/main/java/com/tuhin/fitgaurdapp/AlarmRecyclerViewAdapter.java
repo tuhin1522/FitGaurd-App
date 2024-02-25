@@ -83,7 +83,7 @@ public class AlarmRecyclerViewAdapter extends RecyclerView.Adapter<AlarmRecycler
 
     private void showDeleteConfirmation(int position) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("Delete Notification");
+        builder.setTitle("Delete Reminder");
         builder.setMessage("Are you sure want to delete?");
         builder.setIcon(R.drawable.baseline_delete);
 
